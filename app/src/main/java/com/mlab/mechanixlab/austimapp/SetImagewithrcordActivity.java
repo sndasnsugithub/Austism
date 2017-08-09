@@ -20,7 +20,7 @@ public class SetImagewithrcordActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_set_imagewithrcord);
         recoding = (Button) findViewById(R.id.buttonrcoding);
-        byte[] byteArray = getIntent().getByteArrayExtra("ima");
+        byte[] byteArray = getIntent().getByteArrayExtra("img");
         Bitmap bmp = BitmapFactory.decodeByteArray(byteArray, 0, byteArray.length);
 
         ImageView imageView = (ImageView)findViewById(R.id.imv_selected);
