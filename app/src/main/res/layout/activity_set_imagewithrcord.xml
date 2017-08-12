@@ -27,17 +27,26 @@
 
         </RelativeLayout>
 
-        <Button
-            android:id="@+id/buttonrcoding"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:background="@color/colorPrimary"
-            android:text="@string/app_addrecord"
-            android:layout_alignParentBottom="true"
-            android:layout_alignParentStart="true"
-            tools:ignore="ObsoleteLayoutParam" />
+    <Button
+        android:id="@+id/btn_rcoding"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentStart="true"
+        android:background="@color/colorPrimary"
+        android:text="@string/app_addrecord"
+        tools:ignore="ObsoleteLayoutParam" />
+
+    <Button
+        android:id="@+id/btn_save"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentStart="true"
+        android:background="@color/colorPrimary"
+        android:text="@string/btn_save"
+        tools:ignore="ObsoleteLayoutParam" />
 
 
-
-    </LinearLayout>
+</LinearLayout>
 

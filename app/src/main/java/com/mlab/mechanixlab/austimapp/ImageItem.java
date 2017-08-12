@@ -5,12 +5,7 @@ import android.graphics.Bitmap;
 public class ImageItem {
     private Bitmap image;
     private String title;
-
-    public ImageItem(Bitmap image, String title) {
-        super();
-        this.image = image;
-        this.title = title;
-    }
+    private String soundPath;
 
     public Bitmap getImage() {
         return image;
@@ -26,5 +21,13 @@ public class ImageItem {
 
     public void setTitle(String title) {
         this.title = title;
+    }
+
+    public String getSoundPath() {
+        return soundPath;
+    }
+
+    public void setSoundPath(String soundPath) {
+        this.soundPath = soundPath;
     }
 }

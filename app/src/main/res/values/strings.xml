@@ -2,6 +2,8 @@
     <string name="app_name">Austimapp</string>
     <string name="app_addrecord"> Recording
     </string>
+    <string name="btn_save"> Save</string>
+
 
     <string-array name="image_ids">
         <item>@drawable/image_1</item>

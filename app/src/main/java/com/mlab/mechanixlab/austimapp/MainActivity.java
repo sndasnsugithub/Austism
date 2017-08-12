@@ -1,22 +1,20 @@
 package com.mlab.mechanixlab.austimapp;
 
-import android.app.Activity;
 import android.content.Intent;
-import android.database.Cursor;
 import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
 import android.net.Uri;
-import android.provider.MediaStore;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
 
-import java.io.ByteArrayOutputStream;
+import com.orm.SugarContext;
+import com.orm.SugarRecord;
 
-import static android.R.attr.data;
-import static android.R.attr.thumbnail;
+import java.io.ByteArrayOutputStream;
+import java.io.File;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -51,30 +49,35 @@ public class MainActivity extends AppCompatActivity {
 
             }
         });
+
+        //SugarContext.init(this);
+
+
+
     }
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
         if (requestCode ==  CAPTURE_REQUEST && resultCode == RESULT_OK && null != data) {
-           /* Uri selectedImage = data.getData();
-            String[] filePathColumn = { MediaStore.Images.Media.DATA };
-            Cursor cursor = getContentResolver().query(selectedImage,filePathColumn, null, null, null);
-            cursor.moveToFirst();
-            int columnIndex = cursor.getColumnIndex(filePathColumn[0]);
-            String picturePath = cursor.getString(columnIndex);
-            cursor.close();
-            */
+
             Bitmap photo = (Bitmap) data.getExtras().get("data");
 
-            ByteArrayOutputStream stream = new ByteArrayOutputStream();
+            /*ByteArrayOutputStream stream = new ByteArrayOutputStream();
             photo.compress(Bitmap.CompressFormat.PNG, 100, stream);
-            byte[] byteArray = stream.toByteArray();
+            byte[] byteArray = stream.toByteArray();*/
+
+            // CALL THIS METHOD TO GET THE URI FROM THE BITMAP
+            Uri tempUri = ImageHelper.getImageUri(getApplicationContext(), photo);
+
+            // CALL THIS METHOD TO GET THE ACTUAL PATH
+            File finalFile = new File(ImageHelper.getRealPathFromURI(tempUri,this));
 
             Intent intent = new Intent(this, SetImagewithrcordActivity.class);
-            intent.putExtra("img",byteArray);
+            intent.putExtra("img",finalFile);
             startActivity(intent);
-            //ImageView imageView = (ImageView) findViewById(R.id.imgView);
-            //imageView.setImageBitmap(BitmapFactory.decodeFile(picturePath));
+
+
+
         }
     }
 

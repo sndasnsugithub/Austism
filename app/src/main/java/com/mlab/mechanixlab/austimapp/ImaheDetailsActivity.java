@@ -21,5 +21,7 @@ public class ImaheDetailsActivity extends AppCompatActivity {
 
         ImageView imageView = (ImageView) findViewById(R.id.image);
         imageView.setImageBitmap(bitmap);
+
+
     }
 }
