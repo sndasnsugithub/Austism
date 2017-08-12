@@ -14,17 +14,19 @@ public class CapturedInfo extends SugarRecord{
 
    @Unique
    public int id;
-   public String image;
-   public String sound;
+   public String imagePath;
+   public String soundPath;
+   public String imageName;
 
    // Default constructor is necessary for SugarRecord
    public CapturedInfo() {
 
    }
 
-   public CapturedInfo(int id, String image, String sound) {
+   public CapturedInfo(int id, String imagePath, String soundPath,String imageName) {
       this.id = id;
-      this.image = image;
-      this.sound = sound;
+      this.imagePath = imagePath;
+      this.soundPath = soundPath;
+      this.imageName =imageName;
    }
 }

@@ -76,13 +76,13 @@ public class GallaryActivity extends AppCompatActivity {
         for (CapturedInfo info : capturedInfoList) {
             //Bitmap bitmap = BitmapFactory.decodeResource(getResources(), imgs.getResourceId(i, -1));
             //imageItems.add(new ImageItem(bitmap, "Image#" + i));
-           File imageFile = new File(info.image);
+           File imageFile = new File(info.imagePath);
             Bitmap bmp = ImageHelper.getImageFromFIle(imageFile);
 
             ImageItem imageItem = new ImageItem();
             imageItem.setImage(bmp);
-            imageItem.setTitle("TKB");
-            imageItem.setSoundPath(info.sound);
+            imageItem.setTitle(info.imageName);
+            imageItem.setSoundPath(info.soundPath);
 
             imageItems.add(imageItem);
         }

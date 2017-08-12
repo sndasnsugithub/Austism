@@ -34,6 +34,8 @@ public class AudioRecordTest extends AppCompatActivity {
     private PlayButton   mPlayButton = null;
     private MediaPlayer   mPlayer = null;
 
+    private SaveButton   mSaveButton = null;
+
     // Requesting permission to RECORD_AUDIO
     private boolean permissionToRecordAccepted = false;
     private String [] permissions = {Manifest.permission.RECORD_AUDIO};
@@ -78,8 +80,11 @@ public class AudioRecordTest extends AppCompatActivity {
     }
 
     private void stopPlaying() {
-        mPlayer.release();
-        mPlayer = null;
+        if (mPlayer!=null){
+            mPlayer.release();
+            mPlayer = null;
+        }
+
     }
 
     private void startRecording() {
@@ -103,10 +108,6 @@ public class AudioRecordTest extends AppCompatActivity {
         mRecorder.release();
         mRecorder = null;
 
-        Intent intent = new Intent();
-        intent.putExtra("sound", mFileName);
-        setResult(RESULT_OK, intent);
-        finish();
     }
 
     class RecordButton extends Button {
@@ -152,7 +153,26 @@ public class AudioRecordTest extends AppCompatActivity {
             setOnClickListener(clicker);
         }
     }
+    class SaveButton extends Button {
+        boolean mStartPlaying = false;
 
+        OnClickListener clicker = new OnClickListener() {
+            public void onClick(View v) {
+                onPlay(mStartPlaying);
+
+                Intent intent = new Intent();
+                intent.putExtra("sound", mFileName);
+                setResult(RESULT_OK, intent);
+                finish();
+            }
+        };
+
+        public SaveButton(Context ctx) {
+            super(ctx);
+            setText("Save");
+            setOnClickListener(clicker);
+        }
+    }
     @Override
     public void onCreate(Bundle icicle) {
         super.onCreate(icicle);
@@ -177,6 +197,12 @@ public class AudioRecordTest extends AppCompatActivity {
         mPlayButton = new PlayButton(this);
         ll.addView(mPlayButton,
                 new LinearLayout.LayoutParams(
+                        ViewGroup.LayoutParams.WRAP_CONTENT,
+                        ViewGroup.LayoutParams.WRAP_CONTENT,
+                        0));
+
+        mSaveButton = new SaveButton(this);
+                ll.addView(mSaveButton,new LinearLayout.LayoutParams(
                         ViewGroup.LayoutParams.WRAP_CONTENT,
                         ViewGroup.LayoutParams.WRAP_CONTENT,
                         0));

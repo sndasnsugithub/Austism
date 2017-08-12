@@ -12,6 +12,7 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.Toast;
 
 import com.orm.SugarRecord;
 
@@ -23,7 +24,8 @@ public class SetImagewithrcordActivity extends AppCompatActivity {
 
     Button btn_rcoding,btn_save;
     File imageFile;
-    String soundPath;
+    String soundPath="";
+    String fileName="";
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -56,9 +58,20 @@ public class SetImagewithrcordActivity extends AppCompatActivity {
         btn_save.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                CapturedInfo capturedInfo = new CapturedInfo(1,imageFile.getAbsolutePath().toString(),soundPath);
+                String message="";
+                if (soundPath.length()>0){
+                    CapturedInfo capturedInfo = new CapturedInfo(1,imageFile.getAbsolutePath().toString(),soundPath,fileName);
 
-                SugarRecord.save(capturedInfo);
+                    SugarRecord.save(capturedInfo);
+                    message = "Successfully stored";
+
+                    Toast.makeText(SetImagewithrcordActivity.this,message,Toast.LENGTH_LONG).show();
+                    finish();
+                }else {
+                    message = "Please add a sound file";
+                    Toast.makeText(SetImagewithrcordActivity.this,message,Toast.LENGTH_LONG).show();
+
+                }
 
 
                 //CapturedInfo book = CapturedInfo.findById(CapturedInfo.class, 1);
@@ -76,6 +89,8 @@ public class SetImagewithrcordActivity extends AppCompatActivity {
         {
             soundPath = data.getStringExtra("sound");
             Log.e("Music Path: ",soundPath);
+            fileName = soundPath.substring(soundPath.lastIndexOf('/') + 1);
+            btn_rcoding.setText("Added "+fileName);
         }
     }
 }

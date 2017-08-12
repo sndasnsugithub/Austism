@@ -1,6 +1,6 @@
 <resources>
     <string name="app_name">Austimapp</string>
-    <string name="app_addrecord"> Recording
+    <string name="app_addrecord"> Record Sound
     </string>
     <string name="btn_save"> Save</string>
 
